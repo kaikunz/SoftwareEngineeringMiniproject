@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% load static tailwind_tags %}
+  <head>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhaoNews</title>
+    {% tailwind_css %}
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+          font-family: "Sarabun", serif;
+        }
+    </style>
+  </head>
+
+  <body>
+    {% include 'news/header.html' %}
+    <div class="relative flex grow flex-col items-center mx-auto md:w-[1200px] w-auto">
+
+          {% block main %}
+
+          {% endblock %}
+
+
+    </div>
+{#    {% include 'news/footer.html' %}#}
+  </body>
+</html>

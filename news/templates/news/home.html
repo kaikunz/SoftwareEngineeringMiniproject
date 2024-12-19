@@ -1,0 +1,51 @@
+{% extends 'news/base.html' %}
+{% block main %}
+
+<div class="max-w-screen-xl mx-auto relative p-5 sm:p-0">
+    <div class="grid grid-cols-1 sm:grid-cols-12 gap-10">
+        <div class="sm:col-span-6 lg:col-span-9">
+            <a href="/news/{{ news_0.id }}">
+                <img class="bg-cover text-center overflow-hidden w-full rounded-xl" src="/media/{{ news_0.thumbnail }}" />
+            </a>
+            <div class="mt-3 text-center bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
+                <div class="">
+                    <a href="/news/{{ news_0.id }}" class="text-md text-indigo-600 uppercase font-medium hover:text-gray-900 transition duration-500 ease-in-out">
+                        {{ news_0.tags }}
+                    </a>
+                    <a href="/news/{{ news_0.id }}" class="block text-gray-900 mt-4 font-bold text-3xl mb-2 hover:text-indigo-600 transition duration-500 ease-in-out">
+                        {{ news_0.title }}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="sm:col-span-12 lg:col-span-3">
+            <div class="mb-2">
+                <a href="/news/{{ news_1.id }}">
+                    <img class="h-40 bg-cover text-center overflow-hidden w-full rounded-xl" src="/media/{{ news_1.thumbnail}}" />
+                </a>
+                <a href="/news/{{ news_1.id }}" class="text-gray-900 inline-block font-semibold text-md my-2 hover:text-indigo-600 transition duration-500 ease-in-out">
+                    {{ news_1.title }}
+                </a>
+            </div>
+            <div class="mb-2">
+                <a href="/news/{{ news_2.id }}">
+                    <img class="h-40 bg-cover text-center overflow-hidden w-full rounded-xl" src="/media/{{ news_2.thumbnail}}" />
+                </a>
+                <a href="/news/{{ news_2.id }}" class="text-gray-900 inline-block font-semibold text-md my-2 hover:text-indigo-600 transition duration-500 ease-in-out">
+                    {{ news_2.title }}
+                </a>
+            </div>
+            <div class="">
+                <a href="/news/{{ news_3.id }}">
+                    <img class="h-40 bg-cover text-center overflow-hidden w-full rounded-xl" src="/media/{{ news_3.thumbnail}}" />
+                </a>
+                <a href="/news/{{ news_3.id }}" class="text-gray-900 inline-block font-semibold text-md my-2 hover:text-indigo-600 transition duration-500 ease-in-out">
+                    {{ news_3.title }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

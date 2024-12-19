@@ -1,0 +1,12 @@
+
+<form action="" hx-swap="beforeend" hx-target="#id_tags" hx-post="{% url 'tags-form' %}">
+
+    {% csrf_token %}
+
+    <input class="text-lg w-full px-4 py-2 border border-solid border-gray-300 rounded mb-3" type="text" required placeholder="แท็กข่าวที่ต้องการเพิ่ม" name="name" id="id_name"/>
+
+    <button type="submit" class="mt-4 bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-600 hover:to-indigo-600 px-4 py-2 text-white uppercase rounded text-lg tracking-wider" x-on:click="open = false">
+        เพิ่มแท็ก
+    </button>
+
+</form>

@@ -1,0 +1,78 @@
+{% extends 'news/base.html' %}
+{% block main %}
+
+<div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mb-12" x-data="{ formDeleteOpen: false }">
+    <header class="px-5 py-4 border-b border-gray-100 relative">
+        <h2 class="text-gray-800 text-xl">ข่าวของคุณ</h2>
+        <a href="{% url 'news-add' %}" class="absolute right-2 md:right-8 top-4 text-white bg-blue-600 hover:bg-blue-700 px-6 text-lg rounded-lg">เพิ่มข่าวของคุณ</a>
+    </header>
+    <div class="p-3">
+        <div class="overflow-x-auto">
+            <table class="table-auto w-full">
+                <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                    <tr>
+                        <th class="p-2 whitespace-nowrap">
+                            <div class="font-semibold text-center">ID</div>
+                        </th>
+                        <th class="p-2 whitespace-nowrap">
+                            <div class="font-semibold text-center">Title</div>
+                        </th>
+                        <th class="p-2 whitespace-nowrap">
+                            <div class="font-semibold text-center">Thumbnail</div>
+                        </th>
+                        <th class="p-2 whitespace-nowrap">
+                            <div class="font-semibold text-center">Action</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm divide-y divide-gray-100 ui-sortable">
+                {% for data in news %}
+                    <tr class="rowdata h-6 ui-sortable-handle" id="news-{{ data.id }}">
+                        <td class="p-2 whitespace-nowrap">
+                            <p class="truncate md:w-full w-16 text-center">{{ data.id }}</p>
+                        </td>
+                        <td class="p-2 whitespace-nowrap">
+                            <p class="truncate md:w-full w-16 text-center">{{ data.title }}</p>
+                        </td>
+                        <td class="p-2 whitespace-nowrap">
+                            <img src="/media/{{ data.thumbnail }}" class="w-24 mx-auto" />
+                        </td>
+                        <td class="p-2 whitespace-nowrap text-center">
+                            <a href="{% url 'news-edit' data.id %}" class="ml-1 text-md bg-blue-500 hover:bg-blue-600 rounded-md px-2 text-white">แก้ไขข่าว</a>
+                            <button class="ml-1 text-md bg-red-500 hover:bg-red-600 rounded-md px-2 text-white"
+                            hx-get="{% url 'news-delete' data.id %}" hx-target="#questiondelete" hx-swap="innerHTML" @click="formDeleteOpen = true"
+                            >ลบข่าว</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div x-show="formDeleteOpen"  class="fixed z-20 inset-0 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen">
+            <div id="questiondelete" class="bg-white border border-gray-400"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    function DeleteSuccess() {
+
+        Swal.fire({
+          icon: "success",
+          title: "ลบข่าวสำเร็จ",
+          showConfirmButton: false,
+          timer: 1700
+        })
+
+    }
+
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+<option value="{{ tags.id }}">{{ tags.name }}</option>
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minigo - Game ID Shop</title>
+    <link href="{% static 'shop/tailwind.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+    <br>
+    <h1 class="text-4xl font-bold mb-6 text-center" style="font-family: 'Merriweather'; ">AVAILABLE GAME ID</h1>
+    <br>
+
+    <div class="grid grid-cols-4 gap-4">
+        {% for gameid in gameids %}
+        <div class="shadow-lg rounded-lg flex flex-col items-center p-4 bg-white">
+            <div class="space-y-4 rounded-lg">
+                <div class="max-width: 100px; height: 100px">
+                    {% if gameid.image %}
+                    <img src="{{ gameid.image.url }}" alt="{{ gameid.name }}" class="w-48 h-48 object-cover mx-auto rounded-lg" style="width: 300px; height: 250px;">
+                    {% endif %}
+                </div>
+                <h3 class="text-xl font-bold text-center">{{ gameid.name }}</h3>
+                <p class="text-green-600 font-bold text-center">ราคา {{ gameid.price }} ฿ :
+                    {% if gameid.type == '1' %}
+                        PC
+                    {% elif gameid.type == '2' %}
+                        PlayStation
+                    {% elif gameid.type == '3' %}
+                        Xbox
+                    {% endif %}
+                </p>
+                <p class="text-gray-500 text-center">{{ gameid.created_at }}</p>
+            </div>
+            <br>
+            <div class="flex space-x-4 justify-center">
+                <a href="{% url 'buy_gameid' gameid.id %}" class="px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition duration-300">Buy</a>
+                <br>
+                {% if user.is_superuser %}
+                <a href="{% url 'update_gameid' gameid.id %}" class="px-4 py-2 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-600 transition duration-300">Edit</a>
+                <br>
+                <a href="{% url 'delete_gameid' gameid.id %}" class="px-4 py-2 bg-red-500 text-white font-bold rounded hover:bg-red-600 transition duration-300">Delete</a>
+                <br>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

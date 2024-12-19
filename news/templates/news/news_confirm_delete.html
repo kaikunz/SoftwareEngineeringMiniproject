@@ -1,0 +1,15 @@
+<div class="p-4">
+    <h2 class="text-xl mb-4">คุณต้องการลบข่าวนี้ใช่หรือไม่?</h2>
+    <p class="mb-4">หัวข้อข่าว: "{{ object.title }}"</p>
+    <p class="mb-4">ID ข่าว: "{{ object.id }}"</p>
+    <form method="POST"
+    hx-post="{% url 'news-delete' object.id %}"
+    hx-target="#news-{{ object.id }}"
+    hx-swap="delete"
+    @htmx:after-request.camel="formDeleteOpen = false;" hx-on::after-request="DeleteSuccess()"
+    >
+        {% csrf_token %}
+        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded mr-2">ลบ</button>
+        <button type="button" @click="formDeleteOpen = false" class="bg-gray-500 text-white px-4 py-2 rounded">ยกเลิก</button>
+    </form>
+</div>

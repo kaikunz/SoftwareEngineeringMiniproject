@@ -1,0 +1,19 @@
+<div class="mb-8">
+    <div class="flex flex-row w-full">
+        <div class="mr-1 lg:mr-2">
+            <div class="hidden lg:block">
+                <img src="https://kaichan.co/images/users/user.png" alt="UserProfilePicture" class="object-cover h-[45px] w-[45px] min-w-[45px] min-h-[45px] rounded-full" />
+            </div>
+            <div class="lg:hidden">
+                <img src="https://kaichan.co/images/users/user.png" alt="UserProfilePicture" class="object-cover h-[40px] w-[40px] min-w-[40px] min-h-[40px] rounded-full" />
+            </div>
+        </div>
+        <div class="flex flex-col w-full">
+            <p class="text-sm font-bold text-gray-500 text-balance">
+                {{ comment.author.first_name }} {{ comment.author.last_name }} <span class="ml-1 text-gray-500">•</span>
+                <span class="ml-1 font-normal text-gray-500">{{ comment.created_at }}</span>
+            </p>
+            <p class="mt-1 ml-1">{{ comment.comment }}</p>
+        </div>
+    </div>
+</div>
